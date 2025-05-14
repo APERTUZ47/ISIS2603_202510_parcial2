@@ -1,4 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { CandidatosService } from "../Candidato.service";
 
 @Component({
   selector: 'app-candidatos-list',
@@ -53,12 +54,9 @@ export class CandidatosListComponent implements OnInit {
   @Output() candidatoSeleccionado = null
   seleccionado = false;
 
-  seleccionarCandidato(candidato: any) {
-    this.candidatoSeleccionado = candidato;
-    console.log(this.candidatoSeleccionado);
-    this.seleccionado = true;
+  getPapas(): Observable<CandidatosDetail[]> {
+    return this.http.get<CandidatosDetail[]>(this.apiUrl);
   }
-
   constructor() { }
 
   ngOnInit(): void {
