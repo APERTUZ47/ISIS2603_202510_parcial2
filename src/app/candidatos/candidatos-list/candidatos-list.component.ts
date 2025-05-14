@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { CandidatosService } from "../Candidato.service";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-candidatos-list',
@@ -8,6 +9,7 @@ import { CandidatosService } from "../Candidato.service";
   styleUrl: './candidatos-list.component.css'
 })
 export class CandidatosListComponent implements OnInit {
+  [x: string]: any;
   candidatos = [
     {
       id: 1,
@@ -53,9 +55,10 @@ export class CandidatosListComponent implements OnInit {
 
   @Output() candidatoSeleccionado = null
   seleccionado = false;
+  http: any;
 
-  getPapas(): Observable<CandidatosDetail[]> {
-    return this.http.get<CandidatosDetail[]>(this.apiUrl);
+  getPapas(): Observable<CandidatosListComponent[]> {
+    return this.http.get<CandidatosListComponent[]>(this['apiUrl']);
   }
   constructor() { }
 
